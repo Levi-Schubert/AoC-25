@@ -1,15 +1,15 @@
 package Utils
 
-import java.util.Scanner
 
-
-fun PromptDayPart(): Triple<Int, Int, String>{
-    val scanner = Scanner(System.`in`)
-    println("Select AoC-2025 day: ")
-    val day = scanner.nextInt()
-    println("Select part: ")
-    val part = scanner.nextInt()
-    println("FilePath to input: ")
-    val filepath = scanner.nextLine()
-    return Triple(day, part, filepath)
+class ioUtil {
+    fun PromptDayPart(): Triple<Int, Int, String>{
+        print("Select AoC-2025 day: ")
+        val day = readln().toInt()
+        print("Select part: ")
+        val part = readln().toInt()
+        print("FilePath to input: ")
+        val filepath = readln()
+        println("Selected Day $day, Part $part, File: $filepath")
+        return Triple(day, part, filepath)
+    }
 }
