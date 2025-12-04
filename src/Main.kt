@@ -43,6 +43,14 @@ fun main() {
                 solver.partTwo(fileResult.first)
             }
         }
+        3 -> {
+            val solver = DayThree()
+            answer = if(selectedChallenge.second == 1){
+                solver.partOne(fileResult.first)
+            }else{
+                solver.partTwo(fileResult.first)
+            }
+        }
         else -> {
             println("Invalid or unsolved challenge.")
         }

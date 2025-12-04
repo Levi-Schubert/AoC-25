@@ -38,3 +38,12 @@ fun String.splitAtIndexInts(index: Int): Pair<Int, Int>{
     val second = this.substring(index).toInt()
     return Pair(first, second)
 }
+
+fun String.toListOfInt(): List<Int> {
+    val intList = emptyList<Int>().toMutableList()
+    this.forEach {
+        val int = it.toString().toInt()
+        intList.add(int)
+    }
+    return intList
+}
