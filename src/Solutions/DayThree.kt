@@ -31,8 +31,53 @@ class DayThree {
     }
 
     fun partTwo(lines: List<String>): String {
+        var voltage: Long = 0
 
-        return ""
+        lines.forEach { battery ->
+            voltage += Battery(battery).getVoltage()
+        }
+
+        return voltage.toString()
     }
+}
+
+
+class Battery(input: String) {
+    var cells = mutableListOf<Int>(0,0,0,0,0,0,0,0,0,0,0,0)
+    val cellList = input.toListOfInt()
+    val debug = input
+
+    init {
+        for(cellIndex in 0..<cellList.size){ // 818181911112111
+            val leftMostIndex =  12 - (cellList.size - cellIndex)
+            val start = if(leftMostIndex >= 0){
+                leftMostIndex
+            }else{
+                0
+            }
+            for(index in start..<cells.size){
+                if(12-index > cellList.size-(cellIndex)){
+                    break
+                }
+                if(cellList[cellIndex] > cells[index]){
+                    cells[index] = cellList[cellIndex]
+                    resetCellsPastIndex(index)
+                    break
+                }
+            }
+
+        }
+    }
+
+    fun getVoltage(): Long {
+        return cells.joinToString("").toLong()
+    }
+
+    fun resetCellsPastIndex(index: Int){
+        for(i in index+1..11){
+            cells[i] = 0
+        }
+    }
+
 }
 
