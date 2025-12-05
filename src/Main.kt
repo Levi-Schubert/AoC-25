@@ -1,9 +1,7 @@
 import Solutions.*
 import Utils.*
+import kotlin.system.exitProcess
 
-/**
- *
- */
 fun main() {
     val relativeFileRoot = "inputs/"
 
@@ -25,35 +23,28 @@ fun main() {
         return
     }
 
-    var answer: String? = null
-    when(selectedChallenge.first){
-        1 -> {
-            val solver = DayOne()
-            answer = if(selectedChallenge.second == 1){
-                solver.partOne(fileResult.first)
-            }else{
-                solver.partTwo(fileResult.first)
-            }
-        }
-        2 -> {
-            val solver = DayTwo()
-            answer = if(selectedChallenge.second == 1){
-                solver.partOne(fileResult.first)
-            }else{
-                solver.partTwo(fileResult.first)
-            }
-        }
-        3 -> {
-            val solver = DayThree()
-            answer = if(selectedChallenge.second == 1){
-                solver.partOne(fileResult.first)
-            }else{
-                solver.partTwo(fileResult.first)
-            }
-        }
-        else -> {
-            println("Invalid or unsolved challenge.")
-        }
+
+    val solver = getSolver(selectedChallenge.first)
+    if(solver == null){
+        println("Invalid or unsolved challenge.")
+        exitProcess(0)
+    }
+    val answer = if(selectedChallenge.second == 1){
+        solver.partOne(fileResult.first)
+    }else{
+        solver.partTwo(fileResult.first)
     }
     println("Answer: $answer")
+    exitProcess(1)
+}
+
+
+fun getSolver(day: Int): Solver? {
+    return when(day){
+        1 -> { DayOne() }
+        2 -> { DayTwo() }
+        3 -> { DayThree() }
+        4 -> { DayFour() }
+        else -> { null }
+    }
 }

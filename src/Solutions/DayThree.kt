@@ -2,9 +2,9 @@ package Solutions
 
 import Utils.toListOfInt
 
-class DayThree {
+class DayThree : Solver {
 
-    fun partOne(lines: List<String>): String {
+    override fun partOne(lines: List<String>): String {
         var voltage = 0
 
         lines.forEach {
@@ -28,7 +28,7 @@ class DayThree {
         return voltage.toString()
     }
 
-    fun partTwo(lines: List<String>): String {
+    override fun partTwo(lines: List<String>): String {
         var voltage: Long = 0
 
         lines.forEach { battery ->

@@ -3,8 +3,8 @@ package Solutions
 import Utils.splitAtIndexSecondInt
 import Utils.splitAtIndexInts
 
-class DayOne {
-    fun partOne(lines: List<String>): String {
+class DayOne : Solver{
+    override fun partOne(lines: List<String>): String {
         val dial = Dial()
 
         performDialTurns(lines, dial)
@@ -12,7 +12,7 @@ class DayOne {
         return "${dial.zeroCount}"
     }
 
-    fun partTwo(lines: List<String>): String {
+    override fun partTwo(lines: List<String>): String {
         val dial = Dial()
 
         performDialTurns(lines, dial)

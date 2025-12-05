@@ -3,8 +3,8 @@ package Solutions
 import Utils.splitHalf
 import Utils.splitToLong
 
-class DayTwo {
-    fun partOne(lines: List<String>): String {
+class DayTwo : Solver {
+    override fun partOne(lines: List<String>): String {
         val invalid = emptyList<Long>().toMutableList()
         val ranges = lines.first().split(',')
         ranges.forEach { range ->
@@ -21,7 +21,7 @@ class DayTwo {
         return invalid.sum().toString()
     }
 
-    fun partTwo(lines: List<String>): String {
+    override fun partTwo(lines: List<String>): String {
         val invalid = emptyList<Long>().toMutableList()
         val ranges = lines.first().split(',')
         ranges.forEach { range ->
