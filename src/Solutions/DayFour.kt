@@ -5,26 +5,42 @@ class DayFour : Solver{
     override fun partOne(lines: List<String>): String {
         val map = Map(lines)
 
-        //map.printMap()
-        //map.printAccessibleMap()
-
         return map.accessible.count().toString()
     }
 
     override fun partTwo(lines: List<String>): String {
+        val map = Map(lines)
 
-        return ""
+        return map.removeAllPossibleRolls().toString()
     }
 }
 
 class Map(input: List<String>){
-    val grid = mutableListOf<List<Char>>()
-    val accessible = mutableListOf<Pair<Int, Int>>()
-
+    val grid = mutableListOf<MutableList<Char>>()
+    var accessible = mutableListOf<Pair<Int, Int>>()
 
     init{
         fillGrid(input)
         calcAccessibleCoordinates()
+    }
+
+    fun removeAllPossibleRolls(): Int{
+        var removed = 0
+        while(accessible.isNotEmpty()){
+            removed += removeAccessibleRolls()
+        }
+        return removed
+    }
+
+    private fun removeAccessibleRolls(): Int{
+        var removed = 0
+        accessible.forEach { roll ->
+            grid[roll.second][roll.first] = '.'
+            removed += 1
+        }
+        accessible = mutableListOf()
+        calcAccessibleCoordinates()
+        return removed
     }
 
     private fun fillGrid(input: List<String>){
