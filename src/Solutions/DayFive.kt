@@ -13,7 +13,15 @@ class DayFive: Solver {
     }
 
     override fun partTwo(lines: List<String>): String {
-        TODO("Not yet implemented")
+        val ranges = getRangesAndIngredients(lines).first.sortedBy { it.first }
+        val mergedRanges = mergeRanges(ranges)
+
+        var totalSize: Long = 0
+        for (range in mergedRanges) {
+            totalSize += range.second - range.first + 1
+        }
+
+        return totalSize.toString()
     }
 
 
@@ -35,4 +43,23 @@ class DayFive: Solver {
         }
         return Pair(ranges, ingredients)
     }
+
+    private fun mergeRanges(ranges: List<Pair<Long, Long>>): List<Pair<Long, Long>> {
+        val mergedRanges = mutableListOf<Pair<Long, Long>>()
+        var currentRange = ranges.first()
+
+        for (i in 1..<ranges.size) {
+            val nextRange = ranges[i]
+            // Merge overlapping or adjacent ranges
+            if (nextRange.first <= currentRange.second + 1) {
+                currentRange = Pair(currentRange.first, maxOf(currentRange.second, nextRange.second))
+            } else {
+                mergedRanges.add(currentRange)
+                currentRange = nextRange
+            }
+        }
+        mergedRanges.add(currentRange)
+        return mergedRanges
+    }
+
 }
