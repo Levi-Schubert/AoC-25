@@ -1,7 +1,5 @@
 package Solutions
 
-import Utils.splitHalf
-import Utils.splitToLong
 import Utils.toListOfInt
 
 class DayThree {
