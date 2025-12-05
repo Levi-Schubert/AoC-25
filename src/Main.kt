@@ -45,6 +45,7 @@ fun getSolver(day: Int): Solver? {
         2 -> { DayTwo() }
         3 -> { DayThree() }
         4 -> { DayFour() }
+        5 -> { DayFive() }
         else -> { null }
     }
 }
