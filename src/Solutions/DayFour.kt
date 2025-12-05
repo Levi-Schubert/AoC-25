@@ -27,19 +27,13 @@ class Map(input: List<String>){
     fun removeAllPossibleRolls(): Int{
         var removed = 0
         while(accessible.isNotEmpty()){
-            removed += removeAccessibleRolls()
+            accessible.forEach { roll ->
+                grid[roll.second][roll.first] = '.'
+                removed += 1
+            }
+            accessible = mutableListOf()
+            calcAccessibleCoordinates()
         }
-        return removed
-    }
-
-    private fun removeAccessibleRolls(): Int{
-        var removed = 0
-        accessible.forEach { roll ->
-            grid[roll.second][roll.first] = '.'
-            removed += 1
-        }
-        accessible = mutableListOf()
-        calcAccessibleCoordinates()
         return removed
     }
 
