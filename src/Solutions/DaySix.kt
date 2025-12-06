@@ -79,11 +79,9 @@ class DaySix : Solver {
     class Problem(nums: List<Long>, sign: String) {
         var numbers = emptyList<Long>()
         var multiply = false
-        var s = ""
 
         init {
             numbers = nums
-
 
             if(sign == "*"){
                 multiply = true
@@ -113,6 +111,4 @@ class DaySix : Solver {
             return answer
         }
     }
-
-
 }
